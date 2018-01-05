@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>RubyLab 2017 - Rails Mailer and Background Jobs</title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -21,25 +21,381 @@
 
 class: center, middle
 
-# Action Mailer and Action Job
+# Rails Action Mailer and Action Job
 
 ---
+
+class: center, middle
 
 # Agenda
 
-1. Introduction
-2. Deep-dive
-3. ...
+**Action Mailer**
+
+**Action Job**
+
+**Background Processing tools**
 
 ---
 
-# Introduction
+# Action Mailer
 
+- ## First thing to remember
+--
+
+## Action Mailer is ~~almost~~ the same as Controllers!
+
+???
+
+Action Mailer allows you to send emails from your application using mailer classes and views. Mailers work very similarly to controllers. They inherit from ActionMailer::Base and live in app/mailers, and they have associated views that appear in app/views.
+
+--
+
+- ## Second thing to remember
+--
+
+## Docs on Mailer are pretty awesome!
+
+---
+class: middle
+
+# Let's create a Mailer
+
+```zsh
+$ bin/rails generate mailer UserMailer
+create  app/mailers/user_mailer.rb
+create  app/mailers/application_mailer.rb
+invoke  erb
+create    app/views/user_mailer
+create    app/views/layouts/mailer.text.erb
+create    app/views/layouts/mailer.html.erb
+invoke  test_unit
+create    test/mailers/user_mailer_test.rb
+create    test/mailers/previews/user_mailer_preview.rb
+```
+
+---
+class: middle
+
+# Which will give us
+```ruby
+# app/mailers/application_mailer.rb
+class ApplicationMailer < ActionMailer::Base
+  default from: "from@example.com"
+  layout 'mailer'
+end
+```
+
+--
+```ruby
+# app/mailers/user_mailer.rb
+class UserMailer < ApplicationMailer
+end
+```
+
+---
+class: middle
+
+# Simple example
+
+```ruby
+class UserMailer < ApplicationMailer
+  default from: 'notifications@example.com'
+
+  def welcome_email(user)
+    @user = user
+    @url  = 'http://example.com/login'
+    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+  end
+end
+```
+
+???
+
+default Hash - This is a hash of default values for any email you send from this mailer. In this case we are setting the :from header to a value for all messages in this class. This can be overridden on a per-email basis.
+mail - The actual email message, we are passing the :to and :subject headers in.
+Just like controllers, any instance variables we define in the method become available for use in the views.
+---
+
+class:middle
+
+# And the view
+
+```erb
+<%# app/views/user_mailer/welcome_email.html.erb %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to example.com, <%= @user.name %></h1>
+    <p>
+      You have successfully signed up to example.com,
+      your username is: <%= @user.login %>.<br>
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
+```
+
+---
+class:middle
+
+# Don't forget the text version
+
+```erb
+<%# app/views/user_mailer/welcome_email.text.erb %>
+
+Welcome to example.com, <%= @user.name %>
+===============================================
+
+You have successfully signed up to example.com,
+your username is: <%= @user.login %>.
+
+To login to the site, just follow this link: <%= @url %>.
+
+Thanks for joining and have a great day!
+```
+
+???
+
+# Let's also make a text part for this email.
+Not all clients prefer HTML emails, and so sending both is best practice.
+
+When you call the mail method now, Action Mailer will detect the two templates (text and HTML) and automatically generate a multipart/alternative email.
+
+---
+class: middle
+
+# Let's put this mailer to a good use
+
+```ruby
+  UserMailer.welcome_email(@user).deliver_later
+  UserMailer.welcome_email(@user).deliver_now
+```
+
+---
+class: middle
+
+# Mailer methods
+
+**headers** - headers on the email. Either a hash of header field names and value pairs, or
+
+```ruby
+headers[:field_name] = 'value'
+```
+
+**attachments** - to add attachments to your email. Like this
+
+```ruby
+attachments['file-name.jpg'] = File.read('file-name.jpg')
+```
+
+**mail** - sends the actual email itself
+
+---
+class: middle
+
+# Multiple Recipients
+
+Just pass an Array on String with all the addresses separated by commas.
+
+```ruby
+default to: Proc.new { Admin.pluck(:email) }
+```
+
+The same format can be used to set carbon copy (Cc:) and blind carbon copy (Bcc:) recipients, by using the  keys respectively.
+
+```ruby
+default to: Proc.new { Admin.pluck(:email) },
+        cc: Proc.new { Manager.pluck(:email) },
+        bcc: Proc.new { ContentManager.pluck(:email) }
+```
+
+---
+class: middle
+
+# Configuration
+
+We can set template path and name.
+
+```ruby
+# app/views/notifications/another.html.erb
+class UserMailer < ApplicationMailer
+  default from: 'notifications@example.com'
+
+  def welcome_email(user)
+    @user = user
+    @url  = 'http://example.com/login'
+    mail(to: @user.email,
+         subject: 'Welcome to My Awesome Site',
+         template_path: 'notifications',
+         template_name: 'another')
+  end
+end
+```
+
+---
+class: middle
+
+# Preview emails
+
+Before:
+* `letter_opener` gem
+
+Now:
+```ruby
+class UserMailerPreview < ActionMailer::Preview
+  def welcome_email
+    UserMailer.welcome_email(User.first)
+  end
+end
+```
+
+???
+
+Action Mailer previews provide a way to see how emails look by visiting a special URL that renders them.
+In the above example, the preview class for `UserMailer` should be named `UserMailerPreview` and located in `test/mailers/previews/user_mailer_preview.rb`.
+To see the preview of `welcome_email`, implement a method that has the same name and call `UserMailer.welcome_email`:
+
+Then the preview will be available in `http://localhost:3000/rails/mailers/user_mailer/welcome_email`.
+
+If you change something in `app/views/user_mailer/welcome_email.html.erb` or the mailer itself, it'll automatically reload and render it so you can visually see the new style instantly. A list of previews are also available in `http://localhost:3000/rails/mailers`
+
+By default, these preview classes live in `test/mailers/previews`.
+This can be configured using the `preview_path` option.
+For example, if you want to change it to `lib/mailer_previews`, you can configure it in `config/application.rb`:
+
+```ruby
+config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+```
+
+---
+# Gotchas
+
+ * To generate urls use `_url` helpers, not `_path`
+
+--
+ * remember to set
+ ```ruby
+ config.action_mailer.default_url_options = { host: 'example.com' }
+ ```
+
+--
+ * use `url_for` with `:host`
+ ```ruby
+ <%= url_for(host: 'example.com',
+            controller: 'welcome',
+            action: 'greeting') %>
+ ```
+
+--
+ * non-GET requests doesn't work
+
+--
+ * to use images set `:assets_host`
+ ```ruby
+ # config/application.rb
+ config.action_mailer.asset_host = 'http://example.com'
+ ```
+ then
+ ```ruby
+ <%= image_tag 'image.jpg' %>
+ ```
+
+---
+class: middle
+
+# Action Mailer Callbacks
+
+* ### Same as in controllers
+* ### Will halt if `body` is not nil
+
+---
+class: middle
+
+# Some advanced features
+
+* ### Caching
+* ### Inline rendering
+* ### Layouts
+* ### Receive Emails
+
+---
+class: middle
+
+# Application Wide Configuration
+
+#### See your `config/environments/$RAILS_ENV.rb` file
+
+#### Every config param is in the guides.
+
+---
+# Action Job
+
+--
+
+Facade for all background jobs processing.
+
+???
+
+Active Job is a framework for declaring jobs and making them run on a variety of queuing backends.
+These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings.
+Anything that can be chopped up into small units of work and run in parallel, really.
+
+The main point is to ensure that all Rails apps will have a job infrastructure in place. We can then have framework features and other gems build on top of that, without having to worry about API differences between various job runners such as Delayed Job and Resque. Picking your queuing backend becomes more of an operational concern, then. And you'll be able to switch between them without having to rewrite your jobs.
+
+--
+
+Can work with any background service on `:async` adapter.
+
+--
+
+But it is not persisted - server restart will clear it away.
+
+---
+
+# Action Job
+
+Can set queues
+
+--
+
+Should implement `perform` method
+
+--
+
+Do have callbacks
+
+--
+
+`GlobalID` is added to every Active Record for your comfort
+
+--
+
+Can manage exceptions
+
+---
+
+# Background Processing tools
+
+---
+class: middle, center
+
+# **Sidekiq**
+
+---
+class: middle, center
+# **Questions?**
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
     </script>
     <script>
-      var slideshow = remark.create();
+      var slideshow = remark.create(
+      );
     </script>
   </body>
 </html>
