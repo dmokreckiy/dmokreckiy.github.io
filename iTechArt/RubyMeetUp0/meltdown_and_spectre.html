@@ -33,14 +33,14 @@
   </head>
   <body>
     <textarea id="source">
-
+background-image: url(https://img.purch.com/meltdown-spectre-logos-jpg/o/aHR0cDovL21lZGlhLmJlc3RvZm1pY3JvLmNvbS9JL0IvNzQwNjc1L29yaWdpbmFsL21lbHRkb3duLXNwZWN0cmUtbG9nb3MuanBn)
+---
 class: center, middle
 
 # Meltdown and Spectre
 # SNAFU or FUBAR
 
 ---
-
 class: center, middle
 
 # Agenda
@@ -99,7 +99,26 @@ class: center, middle
 
 **Access any RAM directly**
 
-**Intel-specific (but Apple also affected)**
+**Intel-specific**
+
+**Easy to fix with OS**
+
+???
+
+Explanation:
+1.Fault generated in speculation
+2. If in L1, actual data is used
+3. Speculative execution uses secret byte
+4. Speculation aborted but cache is affected
+---
+background-image: url(https://meltdownattack.com/meltdown.svg)
+class: center, middle
+
+# Meltdown
+
+**Access any RAM directly**
+
+**~~Intel-specific~~ Apple is also affected**
 
 **Easy to fix with OS**
 
@@ -140,19 +159,25 @@ class: center, middle
 
 # What can we do about it?
 
-**OS patches (KAISER)**
+--
+### Good news
 
-**Update browsers**
-**Firefox and Chrome have been fixed**
+OS patches (KAISER)
+
+Update browsers (Firefox and Chrome have been fixed)
 
 ---
 class: center, middle
 
 # What can we do about it?
 
-**Performance cost**
+### Bad news
 
-**Docker and Virtualization affected**
+Accept performance loss
+
+Check your antivirus support of the patches (yep)
+
+Spectre will haunt us for long
 
 ---
 class: center, middle
@@ -180,10 +205,6 @@ Fucked Up Beyond All Recognition
 Burn it to the ground and start over from scratch; it's totally destroyed.
 
 ---
-class: middle, center
-# **Questions?**
-
----
 # **Useful links**
 
  * https://www.youtube.com/watch?v=IPhvL3A-e6E
@@ -205,6 +226,18 @@ The impact and potential issues with current solutions
  * https://gist.github.com/a0viedo/282f9fce9cfa7fecb8edced71451a77a
 
 A gist of useful links about Meltdown and Spectre with official reports
+
+---
+class: middle, center
+# **Questions?**
+
+---
+class: middle, center
+# **And now google these**
+
+## ** Intel Management Engine **
+
+## ** AMD Trust Zone **
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
     </script>
