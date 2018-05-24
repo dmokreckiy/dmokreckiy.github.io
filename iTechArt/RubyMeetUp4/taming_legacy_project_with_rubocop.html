@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taming Legacy Project with Rubocop</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      @page {
+        size: 1210px 681px;
+        margin: 0;
+      }
+
+      @media print {
+        .remark-slide-scaler {
+          width: 100% !important;
+          height: 100% !important;
+          transform: scale(1) !important;
+          top: 0 !important;
+          left: 0 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle
+
+# Taming Legacy Project
+# with Rubocop
+
+---
+class: center, middle
+
+# So...
+
+--
+
+## You've decided to add Rubocop
+
+--
+
+## To your existing (LEGACY) project
+---
+class: center, middle
+
+# Ye brave lad!
+## Храбрый малый! (шотландский)
+---
+class: center, middle
+
+# What manuals say
+
+ **Use `--auto-gen-config`**
+
+ **Use popular open source configs**
+
+ **Write your own**
+
+---
+class: center, middle
+
+# What life says
+
+ ~~**Use `--auto-gen-config`**~~
+
+Generate a configuration file acting as a TODO list
+
+---
+class: center, middle
+
+# What life says
+
+ ~~**Use popular configs**~~
+
+** CodeClimate, Hound, ThoughtBot, Airbnb! **
+
+Good
+
+but not always suites our needs
+
+(or already existing codebase)
+---
+class: center, middle
+
+# What life says
+
+# ~~~
+ ## Write your own
+# ~~~
+
+---
+class: center, middle
+
+# How
+
+---
+class: center, middle
+
+# I need linter
+
+## MeowCop
+### https://github.com/sideci/meowcop
+
+## RuboCop
+### rubocop -l, --lint
+### Run only lint cops
+
+---
+class: center, middle
+
+# Full featured Style Cop
+
+## Take any open sourced config
+## Tweak it
+### I recomend AirBNB
+#### https://github.com/airbnb/ruby/tree/master/rubocop-airbnb
+
+---
+class: center, middle
+
+# Full featured Style Cop
+
+## Config is old?
+
+--
+
+## Use mry gem
+### https://github.com/pocke/mry
+
+---
+class: center, middle
+
+# Full featured Style Cop
+
+## But my project is so ~~old~~ unique
+## I really need customized config
+
+---
+class: center, middle
+
+# Full featured Style Cop
+
+## Use gry gem
+### https://github.com/pocke/gry
+
+--
+
+## Gry extracts coding style guide as a .rubocop.yml from your code that already exists
+
+---
+class: center, middle
+# What was used for iData Cookbook
+
+--
+## Generated config with gry
+## Modified it to our codebase
+## Added .rubocop_todo.yml
+## Added SideCI
+
+---
+class: center, middle
+# What was used for iData Cookbook
+
+# Was
+## 69617
+# Now
+## 9984
+
+---
+class: center, middle
+# Tips and tricks
+
+## Use -P, --parallel
+## A lot of repos? Extract config to a gem
+## You can add additional configs for subfolders (hello, spec/)
+## Use PRs and CI to check against style guides constantly
+
+---
+# **Useful links**
+
+---
+class: middle, center
+# **Questions?**
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create(
+      );
+    </script>
+  </body>
+</html>
