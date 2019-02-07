@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taming Legacy Project with Rubocop</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @font-face {
+        font-family: 'BundaySlabBold';
+        src: url('fonts/BundaySlab-Bold.otf');
+        font-weight: bold;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'BundaySlabLightUp';
+        src: url('fonts/BundaySlab-LightUp.otf');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'QuarionBold';
+        src: url('fonts/Quarion_Bold.otf');
+        font-weight: bold;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'QuarionBook';
+        src: url('fonts/Quarion_Book.otf');
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      body { font-family: 'QuarionBook'; }
+      h1, h2, h3 {
+        font-family: 'BundaySlabBold';
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide-content h1 {
+        font-size: 4rem;
+      }
+      .remark-slide-content {
+        font-size: 2rem;
+      }
+
+      @page {
+        size: 1210px 681px;
+        margin: 0;
+      }
+
+      @media print {
+        .remark-slide-scaler {
+          width: 100% !important;
+          height: 100% !important;
+          transform: scale(1) !important;
+          top: 0 !important;
+          left: 0 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle
+
+# Taming Legacy Project
+# with Rubocop
+
+---
+class: center middle
+
+# Hello!
+---
+class: middle
+
+.center[
+  # Denis Mokreckiy
+]
+
+.center[
+  ![photo](assets/20170705_1.jpg)
+]
+.right[I'm a Software Engeener from iTechArt]
+
+.right[I ❤️ Ruby]
+
+---
+class: center, middle
+
+# You can find me
+
+ ✉️ d.mokreckiy@gmail.com
+
+ 🐦 @dmokreckiy
+
+---
+class: center, middle
+
+Once upon a time I had a project
+
+---
+class: center, middle
+
+a LEGACY project
+
+---
+class: center, middle
+
+Short description
+
+---
+class: center, middle
+
+Ruby 1.8.7
+
+Rails 2.3.something
+
+Java devs that adopted Ruby
+
+---
+class: middle
+
+.center[Something like this]
+
+```ruby
+def can_user_moderate?( user_IN, institution_IN )
+  # return reference
+  is_moderator_OUT = false
+
+  # declare variables
+  institution_role = nil
+  functional_area_array = nil
+  # Functional area roles can be stored as an array or a string
+  current_fa_role_array = Array.new
+  is_fa_moderator = false
+
+  # make sure we have a user and an institution
+  if ( ( user_IN.blank?() == false ) && ( institution_IN.blank?() == false ) )
+    ...
+```
+---
+class: center
+And I had one goal
+
+--
+
+~~Make Ruby on Rails great again~~
+
+---
+class: center
+And I had one goal
+
+
+  ## Rise from the ashes
+
+  ## and reach for the stars!
+
+---
+class: center
+And I had one goal
+
+## Ruby 2.3.x
+
+## Ruby on Rails 4.2.x
+
+## Clean code
+
+---
+class: center middle
+
+## ✔️ Ruby 2.3.x
+
+## ✔️ Ruby on Rails 4.2.x
+
+## ❌ Clean code
+
+---
+class: center middle
+
+![rubocop](https://itiskernel.com/system/blogs/demo_imgs/5808/6a88/af18/c26a/6500/0000/thumb/rubocop-logo.jpg)
+
+---
+class: center, middle
+
+## I need to add rubocop to existing (LEGACY) project
+---
+class: center, middle
+
+# What Internet told me
+
+## Ye brave lad!*
+
+*Храбрый малый! (шотландский)
+---
+class: center, middle
+
+# What manuals told me
+
+### 👉 Use `--auto-gen-config`
+
+### 👉 Use popular open source configs
+
+### 👉 Write your own config
+
+---
+class: center, middle
+
+# What life told me
+
+### Use `--auto-gen-config`
+
+Generate a configuration file acting as a TODO list
+
+---
+
+class: center, middle
+
+# What life told me
+
+### ❌ ~~Use `--auto-gen-config`~~
+
+We won't remove old offences
+
+No one gonna touch this list to sort out the mess
+---
+class: center, middle
+
+# What life told me
+
+### Use popular configs
+
+** CodeClimate, Hound, ThoughtBot, Airbnb! **
+
+---
+class: center, middle
+
+# What life told me
+
+### Use popular configs
+
+✔️ Good choice
+
+☝️ but amount of offences is still overwhelming
+
+I need to adopt it to current codebase
+---
+class: center, middle
+
+# What life told me
+
+🦄 🦄 🦄
+
+## Write your own config
+
+🦄 🦄 🦄
+
+---
+class: center, middle
+
+# But how?
+
+---
+class: center, middle
+
+# First I need a linter
+
+---
+class: center, middle
+
+## MeowCop
+
+https://github.com/sideci/meowcop
+
+### or
+
+## RuboCop
+
+`rubocop -l, --lint`
+
+Run only lint cops
+
+---
+class: center, middle
+
+# OK, got that covered
+
+---
+class: center, middle
+
+# What about style Cops?
+
+---
+class: center, middle
+
+## Take any open sourced config
+## Tweak it
+### I recomend AirBNB
+#### https://github.com/airbnb/ruby/tree/master/rubocop-airbnb
+
+---
+class: center, middle
+
+# Full featured Style Cop
+
+## Config is old?
+
+--
+
+## Use mry gem
+### https://github.com/pocke/mry
+
+---
+class: center, middle
+
+# Full featured Style Cop
+
+## But my project is so ~~old~~ unique
+## I really need customized config
+
+---
+class: center, middle
+
+# Full featured Style Cop
+
+## Use gry gem
+### https://github.com/pocke/gry
+
+--
+
+## Gry extracts coding style guide as a .rubocop.yml from your code that already exists
+
+---
+class: center, middle
+# What was used for my project
+
+--
+## Generated config with gry
+## Modified it to our codebase
+## Added .rubocop_todo.yml
+## Added SideCI
+
+---
+class: center, middle
+# What was used for my project
+
+# Was
+## 69617
+# Now
+## 9984
+
+---
+class: center, middle
+# Tips and tricks
+
+## Use -P, --parallel
+## A lot of repos? Extract config to a gem
+## You can add additional configs for subfolders (hello, spec/)
+## Use PRs and CI to check against style guides constantly
+
+---
+# **Useful links**
+
+### https://rubocop.readthedocs.io/en/latest/
+### https://github.com/sideci/meowcop
+### https://github.com/airbnb/ruby/tree/master/rubocop-airbnb
+### https://github.com/pocke/mry
+### https://github.com/pocke/gry
+### https://blog.sideci.com/tagged/rubocop
+
+---
+class: middle, center
+# **Questions?**
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create(
+      );
+    </script>
+  </body>
+</html>
