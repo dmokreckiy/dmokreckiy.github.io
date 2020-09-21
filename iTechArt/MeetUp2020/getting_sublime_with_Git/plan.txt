@@ -1,0 +1,22 @@
+1. Everyone needs git
+2. Ways to interact with Git
+git CLI - https://git-scm.com/book/en/v2
+git with alliases
+tig
+Git in Rubymine
+Git in VS Code
+Git Kraken
+Sublime Merge
+
+What I wanted out of my git client
+- Free
+- Lightweight
+- Customizable keybinding
+- Not integrated solution aka independent
+- Quick and easy changes addition/removal with status overview
+- Easy to add lines of changes without adding whole file
+- Quick blame info
+- Easy to navigate git log with search
+- Easy stash/unstash with quick preview
+- Comfortable merge conflict solver
+- Easy interactive rebase

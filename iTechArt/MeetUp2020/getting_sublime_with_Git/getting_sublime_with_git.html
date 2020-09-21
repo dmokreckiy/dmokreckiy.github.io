@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Getting sublime with Git</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @font-face {
+        font-family: 'BundaySlabBold';
+        src: url('fonts/BundaySlab-Bold.otf');
+        font-weight: bold;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'BundaySlabLightUp';
+        src: url('fonts/BundaySlab-LightUp.otf');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'QuarionBold';
+        src: url('fonts/Quarion_Bold.otf');
+        font-weight: bold;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'QuarionBook';
+        src: url('fonts/Quarion_Book.otf');
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      body { font-family: 'QuarionBook'; }
+      h1, h2, h3 {
+        font-family: 'BundaySlabBold';
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide-content h1 {
+        font-size: 4rem;
+      }
+      .remark-slide-content {
+        font-size: 2rem;
+      }
+
+      .slide-image {
+        display: inline-block;
+      }
+
+      .slide-image img {
+        width: 70%;
+        height: 500px;
+      }
+
+      @page {
+        size: 1210px 681px;
+        margin: 0;
+      }
+
+      @media print {
+        .remark-slide-scaler {
+          width: 100% !important;
+          height: 100% !important;
+          transform: scale(1) !important;
+          top: 0 !important;
+          left: 0 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle
+
+# Getting sublime
+# with Git
+---
+class: center middle
+
+# Hello!
+
+---
+class: middle
+
+.center[
+  # Denis Mokreckiy
+]
+
+.center[
+  ![photo](assets/20170705_1.jpg)
+]
+.right[I'm a Software Engeener from iTechArt]
+
+.right[I ❤️ Ruby]
+
+---
+class: center, middle
+
+# So...
+
+---
+class: center, middle
+
+## Let's talk about Git
+
+---
+class: center, middle
+
+# From my first day I met with Git
+
+# I loved it ❤️
+
+---
+class: center, middle
+
+# And I used it everywhere since
+
+---
+class: center, middle
+
+# But to use it effectively
+
+# We need to use Git client
+
+---
+class: center, middle
+
+# So I've created a wishlist to guide me in my search
+
+---
+class: center, middle
+
+### Git client wishlist
+
+.left[
+- Free
+- Lightweight
+- Customizable keybinding
+- Not integrated solution aka independent
+- Quick and easy changes addition/removal with status overview
+- Easy to add lines of changes without adding whole file
+- Quick blame info
+- Easy to navigate git log with search
+- Easy stash/unstash with quick preview
+- Comfortable merge conflict solver
+- Easy interactive rebase
+]
+
+---
+class: center, middle
+
+# For quick overview I've organized a table
+
+# To find one that will rule them all (c)
+
+#### 
+
+---
+class: center, middle
+
+# Git CLI?
+
+.center[
+  ![first day with git](assets/first_day_with_git.png)
+]
+---
+class: center, middle
+
+# Well, I tried
+
+.center[
+  ![working in a proper way](assets/working_proper_way.gif)
+]
+
+---
+class: center, middle
+
+# Not too good 👎
+
+# 3 out of 11
+
+---
+class: center, middle
+
+## Sidenote
+
+### Still awesome with
+
+
+.left[
+**Git aliases**
+
+**Git pre commit hooks**
+]
+
+---
+class: center, middle
+
+# Next!
+
+---
+class: center, middle
+
+# tig
+
+## https://jonas.github.io/tig/
+
+---
+class: center, middle
+
+# Awesome repo browser and git sidekiq 🚀
+# 6 out of 11
+
+---
+class: center, middle
+
+# Next!
+
+---
+class: center, middle
+
+# Integrated editor/IDE solutions
+
+---
+class: center, middle
+
+# Sublime Git
+
+## https://github.com/SublimeGit/SublimeGit
+
+---
+class: center, middle
+
+# Quite good 🤔
+
+# 7 out of 11
+
+---
+class: center, middle
+
+# Next!
+
+---
+class: center, middle
+
+# Visual Studio Code with GitLens
+
+## https://gitlens.amod.io
+
+---
+class: center, middle
+
+# A worthy opponent 💪
+
+# 7 out of 11
+
+---
+class: center, middle
+
+# Next!
+
+---
+class: center, middle
+
+# RubyMine aka any JetBrains IDE
+
+## https://www.jetbrains.com/
+
+---
+class: center, middle
+
+# Awesome functionality but heavy and paid only 💵
+# 7 out of 11
+
+---
+class: center, middle
+
+# Next!
+
+---
+class: center, middle
+
+# Git Kraken 🦑
+
+## https://www.gitkraken.com
+
+---
+class: center, middle
+
+# Same as Rubymine but not integrated 🧰
+# 8 out of 11
+
+---
+class: center, middle
+
+# Results so far
+
+---
+class: center, middle
+
+# Every good Git client is either paid 💵
+# or integrated 😔
+# or paid and requires Mac 🍎
+
+---
+class: center, middle
+
+# But one day
+
+# I had a breakthrough!
+
+---
+class: center, middle
+
+# I've found
+
+# Sublime Merge 🕊️
+
+---
+class: center, middle
+
+WIP
+
+# Pro
+
+**Fast**
+
+**Keyboard shortcuts from Sublime**
+
+**Merge viewer**
+
+**Free unlimited trial period**
+
+---
+class: center, middle
+
+# Tips and Tricks
+
+**WIP**
+
+---
+class: middle, center
+## **Yay! Q&A!**
+
+.center.slide-image[
+![question cat](assets/question_cat.jpg)
+]
+
+---
+class: center, middle
+
+## Thank this [guy](https://www.flickr.com/photos/micky_photography/5591760341/in/album-72157622244862718/) for this awesome question cat
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create(
+      );
+    </script>
+  </body>
+</html>

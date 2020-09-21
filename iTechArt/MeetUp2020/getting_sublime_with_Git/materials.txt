@@ -1,0 +1,27 @@
+Sublime Merge
+iTechArt Talks
+
+https://www.sublimemerge.com/docs/
+https://www.sublimemerge.com/docs/command_palette
+https://www.sublimemerge.com/docs/linux_repositories
+https://www.sublimemerge.com/docs/command_line
+https://www.sublimemerge.com/docs/key_bindings
+https://www.sublimemerge.com/
+
+https://www.sublimetext.com/blog/
+https://www.sublimerge.com/sm2/docs/tutorial.html
+
+https://www.youtube.com/watch?v=ui4agRoFgwI
+https://www.youtube.com/watch?v=3GWx_C94-Ng
+https://watch-learn.com/video-tutorials/dev-tools-sublime-merge
+https://www.youtube.com/watch?v=ZrdkEBJV660
+
+file:///home/darky/Work/iTechArt/Knowledge Sharing/Getting sublime with Git/getting_sublime_with_git.hmtl - presentation
+
+https://git-scm.com/book/en/v2
+https://git-scm.com/downloads/guis
+https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Graphical-Interfaces
+https://git.wiki.kernel.org/index.php/Interfaces,_frontends,_and_tools#Graphical_Interfaces
+
+https://github.com/gnab/remark
+https://github.com/gnab/remark/wiki/Formatting#images
