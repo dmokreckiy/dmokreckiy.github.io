@@ -116,6 +116,12 @@ class: center, middle
 
 # And I used it everywhere since
 
+???
+
+Мне посчастливилось всегда работать только с Git,
+поэтому я не знаю страданий при мерджах в SVN или других системах
+контроля версий.
+
 ---
 class: center, middle
 
@@ -127,6 +133,14 @@ class: center, middle
 class: center, middle
 
 # So I've created a wishlist to guide me in my search
+
+???
+
+За весь свой опыт работы с Git в разработке у меня сформировался
+определённый список "хотелок", которые должны присутствовать у идеального
+клиента.
+
+Это моей личное мнение и я его никому не навязываю
 
 ---
 class: center, middle
@@ -147,10 +161,47 @@ class: center, middle
 - Easy interactive rebase
 ]
 
+???
+Free
+По моему сугубо личному мнению, хороший софт должен быть вознаграждён.
+Однако я хочу знать за что я плачу до того, как решу купить что-то.
+Именно поэтому я хотел бы найти либо бесплатный продукт, в разработке
+или поддержке которого я потом могу поучаствовать, либо shareware/trial
+версию, с достаточным временем бесплатного использования.
+
+Lightweight
+Я считаю, что клиент не должен быть монстром, пожирающий ОЗУ гигабайтами,
+нагружающего процессор или видеокарту под 100% для кота, поэтому одним из
+критериев я выбрал легковесность. Клиент не должен потреблять неразумное
+количество ресурсов.
+
+Customizable keybinding
+Настройки клавиш в клиенте под себя - это как стиль письма. У каждого набор
+горячих клавиш свой и каждый должен иметь возможность переносить его в удобный ему клиент
+
+Not integrated solution aka independent
+В идеале, клиент не должен быть завязан на каком либо редакторе или IDE.
+Это практичный вопрос - запуск легкого и отдельного клиента всегда быстрее и
+удобнее, чем работа только в одном редакторе.
+
+Quick and easy changes addition/removal with status overview
+В любой момент времени я должен видеть срез всех изменений, которые я
+сделал и иметь возможность их быстро просмотреть/внести в коммит
+
+Easy to add lines of changes without adding whole file
+
+Quick blame info
+Because sometimes someone should be blamed
+
+Easy to navigate git log with search
+Easy stash/unstash with quick preview
+Comfortable merge conflict solver
+Easy interactive rebase
+
 ---
 class: center, middle
 
-# For quick overview I've organized a [table](https://docs.google.com/spreadsheets/d/e/2PACX-1vTpfmgAiujE6IjXI749gCw95KND6lCr-_EPV5TPcmyWzZygPxV1Kp6jG-DQghRB4iZ_M3cby8oCQbOS/pubhtml?gid=1719753579&single=true)
+# For quick overview I've organized a table
 
 # To find one that will rule them all (🧙)
 
@@ -432,6 +483,9 @@ class: center, middle
 .left[✔️ Comfortable merge conflict solver]
 .left[✔️ Easy interactive rebase]
 
+???
+Interactive Rebase. Sublime Merge currently supports editing commit messages and squashing commits (available from the commit context menu). We'll be adding extra commit wrangling functionality, including reordering commits, moving commits between branches, and amending arbitrary commits.
+
 ---
 class: center, middle
 
@@ -465,7 +519,26 @@ class: center, middle
 
 **Menus**
 
-**Packages AKA Plugins**
+**Packages**
+
+???
+
+Keybindings
+As in Sublime Text you can define keybindings 
+{
+  "keys": ["super+f"], "command": "toggle_search",
+  "context": [{"operator": "not_equal", "key": "merge_mode"}]
+}
+
+Menus
+Menus in Sublime Merge are defined by files ending in .sublime-menu. Menus use JSON, with the top-level structure being an array. Each binding is a JSON object containing information to define the text of the menu entry and what action it should perform. 
+
+Packages
+Sublime Merge comes with a number of packages to provide themes, key bindings, menus and syntax definitions for highlighting code. Sublime Merge will also load syntax definitions from packages installed for Sublime Text. 
+Currently, Sublime Merge does not have a plugin API, nor a built-in package manager.
+
+Command Line
+Sublime Merge can now be used as a standalone merge tool, to merge arbitrary files, integrate with another version control system, or use from the command line via git mergetool. This functionality is available via the smerge command line helper.
 
 ---
 class: center, middle
@@ -499,10 +572,55 @@ class: middle, center
 **Fuzzy search from Sublime Text**
 
 ---
+class: middle, center
+
+<style>img { width: 100%; }</style>
 
 # Build-in Merge Conflic resolver
 
+![Built-in conflict resolver](assets/smerge_conflict_resolver.png)
 
+---
+class: middle, center
+
+# The King
+
+# Sublime Merge 👑
+
+##### Sublime Merge 2 is coming ;)
+
+---
+class: middle, center
+
+# Let's compare all of them
+
+[The spreadsheet!](https://docs.google.com/spreadsheets/d/e/2PACX-1vTpfmgAiujE6IjXI749gCw95KND6lCr-_EPV5TPcmyWzZygPxV1Kp6jG-DQghRB4iZ_M3cby8oCQbOS/pubhtml?gid=1719753579&single=true)
+
+---
+class: middle, center
+
+# Resources
+
+**[Pro Git book](https://git-scm.com/book/en/v2)**
+
+**[Sublime Merge documentation](https://www.sublimemerge.com/docs/)**
+
+---
+class: middle, center
+
+# TO DO
+
+Add videos with several common cases from the wishlist
+to demostrate all git clients workflows
+
+---
+class: middle, center
+
+# I may have missed something in my experience
+
+## Please contact me and let me know about it =)
+
+## email: denis.mokreckiy@itechart-group.com
 
 ---
 class: middle, center
